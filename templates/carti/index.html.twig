@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carti index{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titlu</th>
+                <th>Autor</th>
+                <th>Locatie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for carti in cartis %}
+            <tr>
+
+                <td>{{ carti.NumeCarte }}</td>
+                <td>{{ carti.Autor }}</td>
+                <td>{{ carti.Locatie }}</td>
+                <td>
+                    <div class="d-flex flex-wrap justify-content-evenly align-items-start">
+                    <a href="{{ path('app_carti_show', {'id': carti.id}) }}"><i class="bi bi-eye"></i></a>
+                    <a href="{{ path('app_carti_edit', {'id': carti.id}) }}"><i class="bi bi-pencil-square"></i></a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_carti_new') }}">Create new</a>
+{% endblock %}
